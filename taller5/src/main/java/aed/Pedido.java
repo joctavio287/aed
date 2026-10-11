@@ -17,6 +17,9 @@ public class Pedido implements Comparable<Pedido>{
 
     @Override
     public int compareTo(Pedido otroPedido){
+        // si el actual es menor que el otro, devuelve un número negativo
+        // si el actual es mayor que el otro, devuelve un número positivo
+        // si son iguales, devuelve 0
         int diff_id = this._id - otroPedido._id;
         int diff_cliente = this._cliente - otroPedido._cliente;
         int diff_producto = this._producto - otroPedido._producto;
