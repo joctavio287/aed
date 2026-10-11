@@ -1,28 +1,35 @@
 package aed;
 
 public class PilaSobreArreglo implements Pila {
+    private int[] elems;
+    // Cantidad de elementos; el tope está en elems[size - 1]
+    private int size;
 
     public PilaSobreArreglo(int capacity) {
-        throw new UnsupportedOperationException("No implementada aun");
+        elems = new int[capacity];
+        size = 0;
     }
 
     public void push(int elem) {
-        throw new UnsupportedOperationException("No implementada aun");
+        elems[size] = elem;
+        size++;
     }
 
     public int pop() {
-        throw new UnsupportedOperationException("No implementada aun");
+        int elem = top();
+        size--;
+        return elem;
     }
 
     public int top() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return elems[size - 1];
     }
 
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return size == 0;
     }
 
     public boolean isFull() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return size == elems.length;
     }
 }

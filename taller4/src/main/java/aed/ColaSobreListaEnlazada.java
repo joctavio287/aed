@@ -1,32 +1,48 @@
 package aed;
 
 public class ColaSobreListaEnlazada implements Cola {
+    
+    private Node head;
+    private Node tail;
 
     public ColaSobreListaEnlazada() {
-        throw new UnsupportedOperationException("No implementada aun");
+        head = null;
+        tail = null;
     }
 
     public void enqueue(int elem) {
-        throw new UnsupportedOperationException("No implementada aun");
+        Node nuevo = new Node(elem);
+        if (isEmpty()) {
+            head = nuevo;
+        } else {
+            tail.next = nuevo;
+        }
+        tail = nuevo;
     }
 
     public int dequeue() {
-        throw new UnsupportedOperationException("No implementada aun");
+        int elem = front();
+        head = head.next;
+        if (head == null) {
+            tail = null;
+        }
+        return elem;
     }
 
     public int front() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return head.data;
     }
 
     public int rear() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return tail.data;
     }
 
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return head == null;
     }
 
+    // Una lista enlazada no tiene capacidad fija
     public boolean isFull() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return false;
     }
 }

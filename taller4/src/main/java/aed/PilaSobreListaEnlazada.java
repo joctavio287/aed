@@ -1,28 +1,35 @@
 package aed;
 
 public class PilaSobreListaEnlazada implements Pila {
+    // El tope de la pila es el primer nodo de la lista
+    private Node head;
 
     public PilaSobreListaEnlazada() {
-        throw new UnsupportedOperationException("No implementada aun");
+        head = null;
     }
 
     public void push(int elem) {
-        throw new UnsupportedOperationException("No implementada aun");
+        Node nuevo = new Node(elem);
+        nuevo.next = head;
+        head = nuevo;
     }
 
     public int pop() {
-        throw new UnsupportedOperationException("No implementada aun");
+        int elem = top();
+        head = head.next;
+        return elem;
     }
 
     public int top() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return head.data;
     }
 
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return head == null;
     }
 
+    // Una lista enlazada no tiene capacidad fija
     public boolean isFull() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return false;
     }
 }
