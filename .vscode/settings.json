@@ -1,0 +1,20 @@
+{
+    "terminal.integrated.defaultProfile.windows": "PowerShell (aed)",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell (aed)": {
+            "source": "PowerShell",
+            "args": [
+                "-NoExit",
+                "-Command",
+                "conda activate aed"
+            ]
+        }
+    },
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "C:\\Users\\jocta\\.conda\\envs\\aed\\Library\\lib\\jvm",
+            "default": true
+        }
+    ]
+}
