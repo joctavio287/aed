@@ -1,7 +1,5 @@
 package aed;
 
-import java.util.*;
-
 // Todos los tipos de datos "Comparables" tienen el método compareTo()
 // elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
 public class ABB<T extends Comparable<T>> {
@@ -138,20 +136,50 @@ public class ABB<T extends Comparable<T>> {
 
     public boolean pertenece(T elem){
         Nodo nodoCandidato = buscarNodo(elem);
-        boolean result = false;
-        if (nodoCandidato!=null && elem.compareTo(nodoCandidato.valor)==0){
-            result = true;
-        }
-        return result;
+        return nodoCandidato!=null && elem.compareTo(nodoCandidato.valor)==0;
     }
+
+    private void reemplazar(Nodo nodo){ 
+        // Para nodos con 0 o 1 hijos, quien ocupa el lugar de nodo:
+        // si tiene izquierdo, ese, sino el derecho (puede ser null)
+        Nodo hijo = (nodo.izq != null) ? nodo.izq : nodo.der;
+        Nodo padre = nodo.padre;
+        
+        // Si nodo es raíz, entonces no tiene padre
+        if (padre == null) { 
+            _raiz = hijo;
+        } 
+        else{
+            // nodo es hijo izquierdo de su padre
+            if (nodo == padre.izq) {
+                padre.izq = hijo;
+            // nodo es hijo derecho de su padre
+            } else {
+                padre.der = hijo;
+            }
+        } 
+        // el otro lado del enlace, si hijo existe, su padre ahora es el padre de nodo
+        if (hijo != null) {
+            hijo.padre = padre;
+        }
+    }
+
 
     public void eliminar(T elem){
         Nodo candidatoNodo = buscarNodo(elem);
-        if (candidatoNodo==null||elem.compareTo(candidatoNodo.valor)==0){
+        if (candidatoNodo==null||elem.compareTo(candidatoNodo.valor)!=0){
             return;
         }
         else{
-            
+            if (candidatoNodo.izq==null || candidatoNodo.der==null){
+                reemplazar(candidatoNodo);
+            }
+            else{
+                Nodo sucesor = minimoNodo(candidatoNodo.der);
+                candidatoNodo.valor = sucesor.valor;
+                reemplazar(sucesor);
+            }
+            this._cardinal --;
         }
     }
 
